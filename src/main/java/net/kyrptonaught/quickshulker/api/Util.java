@@ -63,7 +63,10 @@ public class Util {
 
     public static boolean areItemsEqual(ItemStack stack1, ItemStack stack2) {
         QuickShulkerData qsdata = QuickOpenableRegistry.getQuickie(stack1.getItem());
-        return ItemStack.areItemsEqual(stack1, stack2) && ItemStack.areEqual(stack1, stack2) && stack1.getCount() == stack2.getCount() && (qsdata.ignoreSingleStackCheck || stack1.getCount() == 1);
+        if (qsdata != null) {
+            return ItemStack.areItemsEqual(stack1, stack2) && ItemStack.areEqual(stack1, stack2) && stack1.getCount() == stack2.getCount() && (qsdata.ignoreSingleStackCheck || stack1.getCount() == 1);
+        }
+        return false;
     }
 
     public static ScreenHandlerListener forceCloseScreenIfNotPresent(PlayerEntity player, int slotID, ItemStack stack) {
