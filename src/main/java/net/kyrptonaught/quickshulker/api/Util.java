@@ -63,6 +63,7 @@ public class Util {
 
     public static boolean areItemsEqual(ItemStack stack1, ItemStack stack2) {
         QuickShulkerData qsdata = QuickOpenableRegistry.getQuickie(stack1.getItem());
+        if (qsdata == null) return false;  // may null, if player throw the shulker box while opening the screen...
         return ItemStack.areItemsEqual(stack1, stack2) && ItemStack.areEqual(stack1, stack2) && stack1.getCount() == stack2.getCount() && (qsdata.ignoreSingleStackCheck || stack1.getCount() == 1);
     }
 
